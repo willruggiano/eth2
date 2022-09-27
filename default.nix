@@ -5,23 +5,38 @@
   ...
 }:
 with lib; {
+  # imports = [./ethereum.nix];
+
   users = {
     mutableUsers = false;
     users.admin = {
       isNormalUser = true;
       initialPassword = "password";
       extraGroups = ["wheel"];
-      openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEAIngPgrqRfYi/YTrd0+eVRbylSL+weBTtL819GgXUb "];
+      openssh.authorizedKeys.keys = [
+        # willruggiano's desktop:
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEAIngPgrqRfYi/YTrd0+eVRbylSL+weBTtL819GgXUb"
+      ];
     };
   };
 
   time.timeZone = "America/Denver";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  networking.hostName = "eth-nix";
-  networking.hostId = builtins.substring 0 8 (builtins.hashString "md5" config.networking.hostName);
+  networking = {
+    hostId = builtins.substring 0 8 (builtins.hashString "md5" config.networking.hostName);
+    wireless.networks = {
+      NETGEAR39.pskRaw = "8c0581fd9efea018310be1a5872e37211ac724f4e4d4955e2b4e148a4ee1438b";
+    };
+  };
 
-  environment.systemPackages = with pkgs; [vim];
+  age.secrets = {
+    jwtsecret.file = ./secrets/jwtsecret.age;
+    suggested-fee-recipient.file = ./secrets/suggested-fee-recipient.age;
+    wallet-password.file = ./secrets/wallet-password.age;
+  };
+
+  environment.systemPackages = with pkgs; [fzf git ripgrep sysz vim];
   services.openssh.enable = true;
 
   system.stateVersion = "22.11";

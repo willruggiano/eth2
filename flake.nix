@@ -14,6 +14,7 @@
     nixpkgs,
     agenix,
     eth-nix,
+    nixos-hardware,
     ...
   } @ inputs:
     with inputs.flake-utils.lib;
@@ -22,16 +23,17 @@
         supportedSystems = ["aarch64-linux" "x86_64-linux"];
 
         channelsConfig = {allowUnfree = true;};
-        sharedOverlays = [agenix.overlay eth-nix.overlays.default];
+        sharedOverlays = [eth-nix.overlays.default];
 
         hostDefaults.modules = [
           agenix.nixosModule
           eth-nix.nixosModules.prysm
         ];
 
-        hosts.ethereum-node-rpi4 = {
+        hosts.eth-nix = {
           system = "aarch64-linux";
           modules = [
+            nixos-hardware.nixosModules.raspberry-pi-4
             ./hardware/raspberry-pi-4.nix
             ./.
           ];
@@ -42,7 +44,13 @@
         in {
           devShells.default = pkgs.mkShell {
             name = "eth2";
-            buildInputs = with pkgs; [agenix coreutils rpi-imager zstd wget];
+            buildInputs = with pkgs; [
+              agenix.packages."${pkgs.system}".agenix
+              coreutils
+              rpi-imager
+              zstd
+              wget
+            ];
           };
         };
       };
