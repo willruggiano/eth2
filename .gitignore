@@ -1,8 +1,10 @@
 ### direnv
 .direnv
-.envrc
 
 ### nix
 *.img
 *.img.zst
 result
+
+### ssh
+*.pub

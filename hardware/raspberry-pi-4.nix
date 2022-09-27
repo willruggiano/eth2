@@ -4,21 +4,22 @@
 
   fileSystems = {
     "/" = {
-      # TODO: Try this with an SSD instead
-      # ..... and change the label to NIXOS
       device = "/dev/disk/by-label/NIXOS_SD";
       fsType = "ext4";
       options = ["noatime"];
     };
-    # "/home" = {
-    #   device = "/dev/disk/by-label/HOME";
-    #   fsType = "ext4";
-    #   options = ["noatime"];
-    # };
+    "/home" = {
+      device = "/dev/disk/by-label/HOME";
+      fsType = "ext4";
+      options = ["noatime"];
+    };
   };
 
+  swapDevices = [{device = "/dev/disk/by-label/SWAP";}];
+
+  hardware.video.hidpi.enable = true;
+
   networking = {
-    hostname = "eth-nix";
     wireless = {
       enable = true;
       interfaces = ["wlan0"];

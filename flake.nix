@@ -3,6 +3,7 @@
 
   inputs.nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
+  inputs.agenix.url = "github:ryantm/agenix";
   inputs.eth-nix.url = "github:willruggiano/eth-nix";
   inputs.eth-nix.inputs.nixpkgs.follows = "nixpkgs";
   inputs.flake-utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
@@ -11,14 +12,20 @@
   outputs = {
     self,
     nixpkgs,
+    agenix,
     eth-nix,
     ...
   } @ inputs:
     with inputs.flake-utils.lib;
       mkFlake {
         inherit self inputs;
+        supportedSystems = ["aarch64-linux" "x86_64-linux"];
+
+        channelsConfig = {allowUnfree = true;};
+        sharedOverlays = [agenix.overlay eth-nix.overlays.default];
 
         hostDefaults.modules = [
+          agenix.nixosModule
           eth-nix.nixosModules.prysm
         ];
 
@@ -35,7 +42,7 @@
         in {
           devShells.default = pkgs.mkShell {
             name = "eth2";
-            buildInputs = with pkgs; [coreutils rpi-imager zstd wget];
+            buildInputs = with pkgs; [agenix coreutils rpi-imager zstd wget];
           };
         };
       };
