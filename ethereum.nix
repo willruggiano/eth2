@@ -23,6 +23,10 @@ in {
   services.prysm = {
     beacon-chain = {
       enable = true;
+      checkpoint-sync = true;
+      # TODO: This might be nicer? Then you could override the default checkpoint-sync-url
+      # checkpoint-sync.enable = true;
+      # checkpoint-sync.url = "whatever";
       network = eth2network;
       extra-arguments = [
         "--jwt-secret=${config.age.secrets.jwtsecret.path}"

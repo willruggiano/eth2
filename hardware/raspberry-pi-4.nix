@@ -15,8 +15,6 @@ _: {
 
   swapDevices = [{device = "/dev/disk/by-label/SWAP";}];
 
-  hardware.video.hidpi.enable = true;
-
   networking = {
     wireless = {
       enable = true;
