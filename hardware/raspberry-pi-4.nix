@@ -1,7 +1,5 @@
 # NOTE: https://nix.dev/tutorials/installing-nixos-on-a-raspberry-pi
-{nixos-hardware, ...}: {
-  imports = ["${nixos-hardware}/raspberry-pi/4"];
-
+_: {
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-label/NIXOS_SD";
