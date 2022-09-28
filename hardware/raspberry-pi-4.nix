@@ -6,17 +6,11 @@ _: {
       fsType = "ext4";
       options = ["noatime"];
     };
-    "/home" = {
-      device = "/dev/disk/by-label/HOME";
+    "/var/lib/ethereum" = {
+      device = "/dev/disk/by-label/ETHEREUM";
       fsType = "ext4";
       options = ["noatime"];
     };
-    # TODO: Switch to this.
-    # "/var/lib/ethereum" = {
-    #   device = "/dev/disk/by-label/ETHEREUM";
-    #   fsType = "ext4";
-    #   options = ["noatime"];
-    # };
   };
 
   swapDevices = [{device = "/dev/disk/by-label/SWAP";}];

@@ -3,8 +3,8 @@
   pkgs,
   ...
 }: let
-  eth1network = "goerli";
-  eth2network = "prater";
+  eth1network = "mainnet";
+  eth2network = "mainnet";
 in {
   services.ethereum = {
     jwt-secret.enable = true;
