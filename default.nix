@@ -30,11 +30,6 @@ with lib; {
     };
   };
 
-  age.secrets = {
-    prysm-env.file = ./secrets/prysm-env.age;
-    wallet-password.file = ./secrets/wallet-password.age;
-  };
-
   environment.systemPackages = with pkgs; [fzf git ripgrep sysz vim];
   services.openssh.enable = true;
 

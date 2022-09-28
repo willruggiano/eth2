@@ -6,6 +6,11 @@
   eth1network = "mainnet";
   eth2network = "mainnet";
 in {
+  age.secrets = {
+    prysm-env.file = ./secrets/prysm-env.age;
+    wallet-password.file = ./secrets/wallet-password.age;
+  };
+
   services.ethereum = {
     jwt-secret.enable = true;
 
