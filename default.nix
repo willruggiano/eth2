@@ -14,8 +14,10 @@ with lib; {
       initialPassword = "password";
       extraGroups = ["wheel"];
       openssh.authorizedKeys.keys = [
-        # willruggiano's desktop:
+        # willruggiano (ecthelion):
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEAIngPgrqRfYi/YTrd0+eVRbylSL+weBTtL819GgXUb"
+        # willruggiano (mothership):
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIERAQpJ3mjcz+b2Y+Wf598wURIrGU710Sr91HCcwSiXS"
       ];
     };
   };

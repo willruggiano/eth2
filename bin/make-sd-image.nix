@@ -1,20 +1,20 @@
 {
   writeShellApplication,
-  rpi-imager,
+  coreutils,
   wget,
   zstd,
   ...
 }:
 writeShellApplication {
   name = "make-sd-image";
-  runtimeInputs = [rpi-imager wget zstd];
+  runtimeInputs = [coreutils wget zstd];
   text = ''
     pushd sd-images
     last_known_good="$(cat .last-known-good)"
-    wget "https://hydra.nixos.org/build/192408211/download/1/''${last_known_good}.img.zst"
-    unzstd -d "''${last_known_good}.img.zst"
+    last_known_good_file="''${last_known_good##*/}"
+    [ -f "$last_known_good_file" ] || wget "$last_known_good"
+    unzstd -d "''${last_known_good##*/}"
+    sudo dd if="''${last_known_good_file%.*}" of=/dev/sda bs=4096 conv=fsync status=progress
     popd
-
-    sudo -E rpi-imager
   '';
 }
