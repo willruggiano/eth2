@@ -5,7 +5,7 @@
   ...
 }:
 with lib; {
-  # imports = [./ethereum.nix];
+  imports = [./ethereum.nix];
 
   users = {
     mutableUsers = false;

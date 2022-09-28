@@ -35,7 +35,6 @@
           modules = [
             nixos-hardware.nixosModules.raspberry-pi-4
             ./hardware/raspberry-pi-4.nix
-            ./ethereum.nix
             ./.
           ];
         };
