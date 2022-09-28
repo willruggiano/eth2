@@ -27,7 +27,7 @@
 
         hostDefaults.modules = [
           agenix.nixosModule
-          eth-nix.nixosModules.prysm
+          eth-nix.nixosModules.ethereum
         ];
 
         hosts.eth-nix = {
@@ -35,6 +35,16 @@
           modules = [
             nixos-hardware.nixosModules.raspberry-pi-4
             ./hardware/raspberry-pi-4.nix
+            ./ethereum.nix
+            ./.
+          ];
+        };
+
+        # TODO: It would be nice to make this work.
+        hosts.eth-nix-test = {
+          system = "x86_64-linux";
+          modules = [
+            ./ethereum.nix
             ./.
           ];
         };

@@ -4,6 +4,7 @@
 ### nix
 *.img
 *.img.zst
+*.qcow2
 result
 
 ### ssh

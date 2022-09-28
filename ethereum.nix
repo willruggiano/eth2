@@ -6,43 +6,38 @@
   eth1network = "goerli";
   eth2network = "prater";
 in {
-  services.geth.execution = {
-    enable = true;
-    http = {
+  services.ethereum = {
+    jwt-secret.enable = true;
+
+    execution.geth = {
       enable = true;
-      apis = ["eth" "net" "engine" "admin"];
+      network = eth1network;
+      extra-arguments = [
+        "--http.api 'eth,net,engine,admin'"
+      ];
     };
-    # TODO: Enable agenix and store the jwt secret.
-    # authrpc = {
-    #   enable = true;
-    #   jwtsecret = "${config.age.secrets.jwtsecret.path}";
-    # };
-    network = eth1network;
+
+    consensus.prysm = {
+      beacon-chain = {
+        enable = true;
+        checkpoint-sync = true;
+        network = eth2network;
+        extra-arguments = [
+          "--suggested-fee-recipient $SUGGESTED_FEE_RECIPIENT"
+        ];
+      };
+
+      validator = {
+        enable = false;
+        network = eth2network;
+        wallet-password-file = config.age.secrets.wallet-password.path;
+        extra-arguments = [
+          "--suggested-fee-recipient $SUGGESTED_FEE_RECIPIENT"
+        ];
+      };
+    };
   };
 
-  services.prysm = {
-    beacon-chain = {
-      enable = true;
-      checkpoint-sync = true;
-      # TODO: This might be nicer? Then you could override the default checkpoint-sync-url
-      # checkpoint-sync.enable = true;
-      # checkpoint-sync.url = "whatever";
-      network = eth2network;
-      extra-arguments = [
-        "--jwt-secret=${config.age.secrets.jwtsecret.path}"
-        "--suggested-fee-recipient=$(cat ${config.age.secrets.suggested-fee-recipient.path})"
-      ];
-    };
-    validator = {
-      enable = true;
-      network = eth2network;
-      extra-arguments = [
-        "--suggested-fee-recipient=$(cat ${config.age.secrets.suggested-fee-recipient.path})"
-        "--wallet-password-file=${config.age.secrets.wallet-password.path}"
-      ];
-    };
-    # client-stats = {
-    #   enable = true;
-    # };
-  };
+  systemd.services.beacon-chain.serviceConfig.EnvironmentFile = config.age.secrets.prysm-env.path;
+  systemd.services.validator.serviceConfig.EnvironmentFile = config.age.secrets.prysm-env.path;
 }

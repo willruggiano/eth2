@@ -31,8 +31,7 @@ with lib; {
   };
 
   age.secrets = {
-    jwtsecret.file = ./secrets/jwtsecret.age;
-    suggested-fee-recipient.file = ./secrets/suggested-fee-recipient.age;
+    prysm-env.file = ./secrets/prysm-env.age;
     wallet-password.file = ./secrets/wallet-password.age;
   };
 
