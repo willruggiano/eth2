@@ -26,11 +26,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1664435684,
-        "narHash": "sha256-VsaHU8HQ/RodVOnmK9H8hNZXSlaZQUhAMmhPwO9ZaSM=",
+        "lastModified": 1664438656,
+        "narHash": "sha256-8nwUySvEaNkkyKaMaquBg73Ragt/7VbUN9rUE5gRLCc=",
         "owner": "willruggiano",
         "repo": "eth-nix",
-        "rev": "b4404287565abe2cd8fc3392f8fd82b84a156a78",
+        "rev": "ef119c587451acf2fa1d3aa5ee731d344d43ab87",
         "type": "github"
       },
       "original": {
