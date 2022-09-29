@@ -14,7 +14,7 @@ writeShellApplication {
     last_known_good_file="''${last_known_good##*/}"
     [ -f "$last_known_good_file" ] || wget "$last_known_good"
     unzstd -d "''${last_known_good##*/}"
-    sudo dd if="''${last_known_good_file%.*}" of=/dev/sda bs=4096 conv=fsync status=progress
+    nix-shell -p rpi-imager --run 'sudo -E rpi-imager'
     popd
   '';
 }
