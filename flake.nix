@@ -54,7 +54,6 @@
           devShells.default = pkgs.mkShell {
             name = "eth2";
             buildInputs = with pkgs; [
-              (pkgs.callPackage ./bin/make-sd-image.nix {})
               agenix.packages."${pkgs.system}".agenix
               coreutils
               rpi-imager

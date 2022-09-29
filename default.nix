@@ -5,7 +5,7 @@
   ...
 }:
 with lib; {
-  imports = [./ethereum.nix];
+  # imports = [./ethereum.nix];
 
   users = {
     mutableUsers = false;
@@ -35,5 +35,5 @@ with lib; {
   environment.systemPackages = with pkgs; [fzf git ripgrep sysz vim];
   services.openssh.enable = true;
 
-  system.stateVersion = "22.11";
+  system.stateVersion = "22.05";
 }
