@@ -17,6 +17,8 @@ See the [official Nix guide][guide].
     - `mkfs.ext4 -L ETHEREUM /dev/sda1`
     - `mkswap -L SWAP /dev/sda2`
 8. Clone the flake repository to /etc/nixos and then `nixos-rebuild switch --flake .#eth-nix`
+9. `reboot`
+10. Continue with [SETUP.md](./SETUP.md)
 
 [guide]: https://nixos.org/guides/installing-nixos-on-a-raspberry-pi.html
 [bootloader]: https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#updating-the-bootloader
