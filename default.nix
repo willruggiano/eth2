@@ -33,7 +33,10 @@ with lib; {
   };
 
   environment.systemPackages = with pkgs; [fzf git ripgrep sysz vim];
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    passwordAuthentication = false;
+  };
 
   system.stateVersion = "22.05";
 }
