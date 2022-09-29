@@ -9,7 +9,10 @@ let
   systems = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINVpAjJ4IHby/YT5uw3NvYgy+PCad1yWZQwy1DEDED7h"
   ];
+
+  public-keys = developers ++ systems;
 in {
-  "prysm-env.age".publicKeys = developers ++ systems;
-  "wallet-password.age".publicKeys = developers ++ systems;
+  "client-stats-env.age".publicKeys = public-keys;
+  "prysm-env.age".publicKeys = public-keys;
+  "wallet-password.age".publicKeys = public-keys;
 }

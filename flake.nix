@@ -56,6 +56,7 @@
             buildInputs = with pkgs; [
               agenix.packages."${pkgs.system}".agenix
               coreutils
+              ethdo
               rpi-imager
               zstd
               wget
