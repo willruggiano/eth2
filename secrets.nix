@@ -7,7 +7,7 @@ let
   ];
 
   systems = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIACSzX6qdR3gm7bvXq8f6e8bVhKc2VFEgzXNC2p4jYnk"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINVpAjJ4IHby/YT5uw3NvYgy+PCad1yWZQwy1DEDED7h"
   ];
 in {
   "prysm-env.age".publicKeys = developers ++ systems;
