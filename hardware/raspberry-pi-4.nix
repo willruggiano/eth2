@@ -6,7 +6,7 @@ _: {
       fsType = "ext4";
       options = ["noatime"];
     };
-    "/var/lib/ethereum" = {
+    "/var/lib/private/ethereum" = {
       device = "/dev/disk/by-label/ETHEREUM";
       fsType = "ext4";
       options = ["noatime"];
