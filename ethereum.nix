@@ -27,11 +27,11 @@ in {
     consensus.prysm = {
       beacon-chain = {
         enable = true;
+        inherit network;
         checkpoint-sync = {
           enable = true;
           url = "https://beaconstate.ethstaker.cc";
         };
-        inherit network;
         extra-arguments = [
           "--suggested-fee-recipient $SUGGESTED_FEE_RECIPIENT"
         ];
