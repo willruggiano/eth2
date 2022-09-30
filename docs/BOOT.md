@@ -16,7 +16,7 @@ See the [official Nix guide][guide].
     - `parted /dev/sda -- mkpart primary linux-swap -8G 100%`
     - `mkfs.ext4 -L ETHEREUM /dev/sda1`
     - `mkswap -L SWAP /dev/sda2`
-8. Clone the flake repository to /etc/nixos and then `nixos-rebuild switch --flake .#eth-nix`
+8. Clone the flake repository to `/etc/nixos` and then `nixos-rebuild switch --flake /etc/nixos#eth-nix`
 9. `reboot`
 10. Continue with [SETUP.md](./SETUP.md)
 
