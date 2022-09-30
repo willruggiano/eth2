@@ -32,7 +32,7 @@ with lib; {
     };
   };
 
-  environment.systemPackages = with pkgs; [fzf git ripgrep sysz vim];
+  environment.systemPackages = with pkgs; [fzf git htop ripgrep sysz vim];
   services.openssh = {
     enable = true;
     passwordAuthentication = false;
