@@ -27,9 +27,6 @@ with lib; {
 
   networking = {
     hostId = builtins.substring 0 8 (builtins.hashString "md5" config.networking.hostName);
-    wireless.networks = {
-      NETGEAR39.pskRaw = "8c0581fd9efea018310be1a5872e37211ac724f4e4d4955e2b4e148a4ee1438b";
-    };
   };
 
   environment.systemPackages = with pkgs; [fzf git htop ripgrep sysz vim];

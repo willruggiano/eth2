@@ -14,11 +14,4 @@ _: {
   };
 
   swapDevices = [{device = "/dev/disk/by-label/SWAP";}];
-
-  networking = {
-    wireless = {
-      enable = true;
-      interfaces = ["wlan0"];
-    };
-  };
 }
