@@ -26,15 +26,16 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1664475826,
-        "narHash": "sha256-22X+Mm7PkWwSDd7xJI55oTT8wsz9YT6rfs4ToiQXGQc=",
+        "lastModified": 1664573859,
+        "narHash": "sha256-/6ZhVCKks2u4nsn/xwf9AKyNKhtJftdbp6r16oB3DB0=",
         "owner": "willruggiano",
         "repo": "eth-nix",
-        "rev": "b84f2ef64bfe1876245e06fa45563cf64f32dd53",
+        "rev": "ec72813287913c941df70fc0b9b29a0ece600aad",
         "type": "github"
       },
       "original": {
         "owner": "willruggiano",
+        "ref": "feat/mev",
         "repo": "eth-nix",
         "type": "github"
       }

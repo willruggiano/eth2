@@ -4,6 +4,8 @@
   ...
 }: let
   network = "mainnet";
+  # NOTE: This is the *mainnet* url!
+  mev-relay-url = "https://0xac6e77dfe25ecd6110b8e780608cce0dab71fdd5ebea22a16c0205200f2f8e2e3ad3b71d3499c54ad14d6c21b41a37ae@boost-relay.flashbots.net";
 in {
   age.secrets = {
     client-stats-env.file = ./secrets/client-stats-env.age;
@@ -25,7 +27,10 @@ in {
     consensus.prysm = {
       beacon-chain = {
         enable = true;
-        checkpoint-sync = true;
+        checkpoint-sync = {
+          enable = true;
+          url = "https://beaconstate.ethstaker.cc";
+        };
         inherit network;
         extra-arguments = [
           "--suggested-fee-recipient $SUGGESTED_FEE_RECIPIENT"
@@ -42,9 +47,15 @@ in {
       };
     };
 
+    mev-boost = {
+      enable = false;
+      inherit network;
+      relays = [mev-relay-url];
+    };
+
     monitoring.prysm.client-stats = {
       enable = true;
-      api-url = "https://beaconcha.in/api/v1/stats/$CLIENT_STATS_API_KEY/${config.networking.hostName}";
+      api-url = "https://beaconcha.in/api/v1/client/metrics?apikey=$CLIENT_STATS_API_KEY?machine=${config.networking.hostName}";
     };
   };
 

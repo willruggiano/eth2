@@ -4,7 +4,7 @@
   inputs.nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
   inputs.agenix.url = "github:ryantm/agenix";
-  inputs.eth-nix.url = "github:willruggiano/eth-nix";
+  inputs.eth-nix.url = "github:willruggiano/eth-nix/feat/mev";
   inputs.eth-nix.inputs.nixpkgs.follows = "nixpkgs";
   inputs.flake-utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
   inputs.nixos-hardware.url = "github:nixos/nixos-hardware";
