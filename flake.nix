@@ -33,8 +33,9 @@
         hosts.eth-nix = {
           system = "aarch64-linux";
           modules = [
-            nixos-hardware.nixosModules.raspberry-pi-4
-            ./hardware/raspberry-pi-4.nix
+            # nixos-hardware.nixosModules.raspberry-pi-4
+            # ./hardware/raspberry-pi-4.nix
+            ./hardware/rock-5b.nix
             ./.
           ];
         };
@@ -57,7 +58,6 @@
               agenix.packages."${pkgs.system}".agenix
               coreutils
               ethdo
-              rpi-imager
               zstd
               wget
             ];
