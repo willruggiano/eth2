@@ -1,0 +1,20 @@
+[Unit]
+Description=Prysm beacon-chain
+After=network-online.target geth.service
+Wants=geth.service mev-boost.service
+
+[Service]
+Type=simple
+User=ethereum
+Group=ethereum
+PrivateTmp=true
+ProtectSystem=full
+NoNewPrivileges=true
+PrivateDevices=true
+MemoryDenyWriteExecute=true
+ExecStart=/home/ethereum/.local/bin/prysm.sh beacon-chain --mainnet --checkpoint-sync-url https://beaconstate.ethstaker.cc --genesis-beacon-api-url https://beaconstate.ethstaker.cc --suggested-fee-recipient 0xb690d666082c6C2D79873f2DB55cf7DAF6aa03fc --execution-endpoint /home/ethereum/.ethereum/geth.ipc --http-mev-relay http://localhost:18550 --accept-terms-of-use
+Restart=always
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,20 @@
+[Unit]
+Description=Mev boost
+After=network-online.target beacon-chain.service validator.service
+Wants=beacon-chain.service validator.service
+
+[Service]
+Type=simple
+User=ethereum
+Group=ethereum
+PrivateTmp=true
+ProtectSystem=full
+NoNewPrivileges=true
+PrivateDevices=true
+MemoryDenyWriteExecute=true
+ExecStart=/home/ethereum/.local/bin/mev-boost -mainnet -relay-check -relays https://0xac6e77dfe25ecd6110b8e780608cce0dab71fdd5ebea22a16c0205200f2f8e2e3ad3b71d3499c54ad14d6c21b41a37ae@boost-relay.flashbots.net
+Restart=always
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target

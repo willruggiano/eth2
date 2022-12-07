@@ -1,0 +1,19 @@
+[Unit]
+Description=Geth
+After=network-online.target
+
+[Service]
+Type=simple
+User=ethereum
+Group=ethereum
+PrivateTmp=true
+ProtectSystem=full
+NoNewPrivileges=true
+PrivateDevices=true
+MemoryDenyWriteExecute=true
+ExecStart=/home/ethereum/.local/bin/geth --mainnet --http.api 'eth,net,engine,admin'
+Restart=always
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target
