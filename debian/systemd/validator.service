@@ -1,7 +1,7 @@
 [Unit]
 Description=Prysm validator
-After=network-online.target beacon-chain.service mev-boost.service
-Wants=beacon-chain.service mev-boost.service
+After=network-online.target beacon-chain.service
+Wants=beacon-chain.service
 
 [Service]
 Type=simple
